@@ -20,3 +20,7 @@
 ```cmd
 npx shadcn-ui@latest add button
 ```
+
+## Inspired by this Tutorial
+
+https://www.youtube.com/watch?v=1MTyCvS05V4

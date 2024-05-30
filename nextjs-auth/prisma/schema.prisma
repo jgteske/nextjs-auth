@@ -9,8 +9,15 @@ datasource db {
 // if update this page!
 // npx prisma generate - create the schema for the local client
 // npx prisma db push - sync the schema for the connected db
+// npx prisma studio - check database locally
+// npx prisma migrate reset - deleta all data in the database
 generator client {
   provider = "prisma-client-js"
+}
+
+enum UserRole {
+  ADMIN
+  USER
 }
 
 model User {
@@ -20,6 +27,7 @@ model User {
   emailVerified DateTime?
   image         String?
   password      String?
+  role          UserRole  @default(USER)
   accounts      Account[]
 }
 
