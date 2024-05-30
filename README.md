@@ -1,8 +1,21 @@
 # This is a Authentication Methode for Next.js using Auth.js
 
-## Add Components of Shadcn-UI
+## Used Technologies
 
-[Shadcn-UI](https://ui.shadcn.com/docs/components/accordion)
+### Base
+
+- [Next.js](https://nextjs.org/)
+- [Authjs 5](https://authjs.dev/)
+
+### Online Database
+
+- [Neon.tech](https://neon.tech/)
+
+### UI/UX
+
+- [Shadcn-UI](https://ui.shadcn.com/docs/components/accordion)
+
+## Add Components of Shadcn-UI
 
 ```cmd
 npx shadcn-ui@latest add button
