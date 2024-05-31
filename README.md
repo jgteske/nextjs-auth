@@ -14,6 +14,7 @@
 ### UI/UX
 
 - [Shadcn-UI](https://ui.shadcn.com/docs/components/accordion)
+- [React Spinners](https://www.davidhu.io/react-spinners/)
 
 ## Add Components of Shadcn-UI
 
