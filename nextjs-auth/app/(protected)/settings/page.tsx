@@ -1,21 +1,20 @@
-import { auth, signOut } from "@/auth";
+"use client";
 
-const SettingsPage = async () => {
-  const session = await auth();
+import { useSession, signOut } from "next-auth/react";
+
+const SettingsPage = () => {
+  const session = useSession();
+
+  const onClick = () => {
+    signOut();
+  };
 
   return (
     <div>
       {JSON.stringify(session)}
-      <form
-        action={async () => {
-          "use server";
-
-          // !BUG: TODO - redirects to /settings after logging out, but doesn't immediately go to /auth/login again with the middleware
-          await signOut();
-        }}
-      >
-        <button type="submit">Sign out</button>
-      </form>
+      <button onClick={onClick} type="submit">
+        Sign out
+      </button>
     </div>
   );
 };
