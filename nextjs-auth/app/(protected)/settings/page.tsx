@@ -1,5 +1,6 @@
 "use client";
 
+//import { logout } from "@/actions/logout";
 import { useSession, signOut } from "next-auth/react";
 
 const SettingsPage = () => {
@@ -7,6 +8,7 @@ const SettingsPage = () => {
 
   const onClick = () => {
     signOut();
+    //logout();
   };
 
   return (
