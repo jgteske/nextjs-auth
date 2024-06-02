@@ -1,4 +1,11 @@
 // prisma/schema.prisma
+
+// if update this page!
+// npx prisma generate - create the schema for the local client
+// npx prisma db push - sync the schema for the connected db
+// npx prisma studio - check database locally
+// npx prisma migrate reset - deleta all data in the database
+
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
@@ -6,11 +13,6 @@ datasource db {
   // directUrl = env("DATABASE_URL_UNPOOLED")
 }
 
-// if update this page!
-// npx prisma generate - create the schema for the local client
-// npx prisma db push - sync the schema for the connected db
-// npx prisma studio - check database locally
-// npx prisma migrate reset - deleta all data in the database
 generator client {
   provider = "prisma-client-js"
 }
@@ -51,6 +53,15 @@ model Account {
 }
 
 model VerificationToken {
+  id      String   @id @default(cuid())
+  email   String
+  token   String   @unique
+  expires DateTime
+
+  @@unique([email, token])
+}
+
+model PasswordResetToken {
   id      String   @id @default(cuid())
   email   String
   token   String   @unique
