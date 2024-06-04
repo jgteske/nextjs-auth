@@ -29,7 +29,7 @@ https://www.youtube.com/watch?v=1MTyCvS05V4
 TODOs:
 
 - [x] [2FA](https://youtu.be/1MTyCvS05V4?si=dmhoukdEg3xIgnwM&t=19368)
-- [ ] [Server / Client Example](https://youtu.be/1MTyCvS05V4?si=qj_sjDpI-OxHLE91&t=22502)
+- [x] [Server / Client Example](https://youtu.be/1MTyCvS05V4?si=qj_sjDpI-OxHLE91&t=22502)
 - [ ] [Admin Example](https://youtu.be/1MTyCvS05V4?si=3ovdBeND7lM7RjpM&t=23406)
 - [ ] [Settings Page](https://youtu.be/1MTyCvS05V4?si=EcQ7pZRy3aVl_Uvv&t=24445)
 - [ ] [Deployment](https://youtu.be/1MTyCvS05V4?si=4f5xohbNwDscjPSD&t=27494)
