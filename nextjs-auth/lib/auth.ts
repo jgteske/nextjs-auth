@@ -1,5 +1,5 @@
 // can be used in server components, server actions and api routes
-import { auth } from "@/auth";
+import { auth } from '@/auth';
 
 export const currentUser = async () => {
   const session = await auth();

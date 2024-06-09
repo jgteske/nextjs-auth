@@ -1,10 +1,10 @@
-import { Poppins } from "next/font/google";
+import { Poppins } from 'next/font/google';
 
-import { cn } from "@/lib/utils";
+import { cn } from '@/lib/utils';
 
 const font = Poppins({
-  subsets: ["latin"],
-  weight: ["600"],
+  subsets: ['latin'],
+  weight: ['600'],
 });
 
 interface HeaderProps {
@@ -13,11 +13,11 @@ interface HeaderProps {
 
 export const Header = ({ label }: HeaderProps) => {
   return (
-    <div className="w-full flex flex-col gap-y-4 item-center justify-center">
-      <h1 className={cn("text-3xl font-semibold text-center", font.className)}>
+    <div className='w-full flex flex-col gap-y-4 item-center justify-center'>
+      <h1 className={cn('text-3xl font-semibold text-center', font.className)}>
         🔐 Auth
       </h1>
-      <p className="text-muted-foreground text-sm text-center">{label}</p>
+      <p className='text-muted-foreground text-sm text-center'>{label}</p>
     </div>
   );
 };

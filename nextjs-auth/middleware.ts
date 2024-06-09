@@ -1,13 +1,13 @@
 //export { auth as middleware } from "@/auth";
-import NextAuth, { Session } from "next-auth";
-import authConfig from "@/auth.config";
+import NextAuth, { Session } from 'next-auth';
+import authConfig from '@/auth.config';
 import {
   DEFAULT_LOGIN_REDIRECT,
   apiAuthPrefix,
   authRoutes,
   publicRoutes,
-} from "@/routes";
-import { NextRequest } from "next/server";
+} from '@/routes';
+import { NextRequest } from 'next/server';
 
 const { auth } = NextAuth(authConfig);
 
@@ -51,5 +51,5 @@ export default auth(
 );
 
 export const config = {
-  matcher: ["/((?!.*\\..*|_next).*)", "/", "/(api|trpc)(.*)"],
+  matcher: ['/((?!.*\\..*|_next).*)', '/', '/(api|trpc)(.*)'],
 };

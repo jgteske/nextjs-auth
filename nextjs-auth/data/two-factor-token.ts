@@ -1,4 +1,4 @@
-import { db } from "@/lib/db";
+import { db } from '@/lib/db';
 
 export const getTowFactorTokenByToken = async (token: string) => {
   try {
