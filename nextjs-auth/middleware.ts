@@ -1,5 +1,5 @@
 //export { auth as middleware } from "@/auth";
-import NextAuth from "next-auth";
+import NextAuth, { Session } from "next-auth";
 import authConfig from "@/auth.config";
 import {
   DEFAULT_LOGIN_REDIRECT,
@@ -7,45 +7,48 @@ import {
   authRoutes,
   publicRoutes,
 } from "@/routes";
+import { NextRequest } from "next/server";
 
 const { auth } = NextAuth(authConfig);
 
-export default auth((req) => {
-  const { nextUrl } = req;
-  const isLoggedIn = !!req.auth;
+export default auth(
+  (req: NextRequest & { auth: Session | null }): Response | void => {
+    const { nextUrl } = req;
+    const isLoggedIn = !!req.auth;
 
-  const isApiAuthRoute = nextUrl.pathname.startsWith(apiAuthPrefix);
-  const isPublicRoute = publicRoutes.includes(nextUrl.pathname);
-  const isAuthRoute = authRoutes.includes(nextUrl.pathname);
+    const isApiAuthRoute = nextUrl.pathname.startsWith(apiAuthPrefix);
+    const isPublicRoute = publicRoutes.includes(nextUrl.pathname);
+    const isAuthRoute = authRoutes.includes(nextUrl.pathname);
 
-  if (isApiAuthRoute) {
-    return null;
-  }
-
-  if (isAuthRoute) {
-    if (isLoggedIn) {
-      return Response.redirect(new URL(DEFAULT_LOGIN_REDIRECT, nextUrl));
-    }
-    return null;
-  }
-
-  if (!isLoggedIn && !isPublicRoute) {
-    let callbackUrl = nextUrl.pathname;
-    if (nextUrl.search) {
-      callbackUrl += nextUrl.search;
+    if (isApiAuthRoute) {
+      return;
     }
 
-    const encodedCallbackUrl = encodeURIComponent(callbackUrl);
+    if (isAuthRoute) {
+      if (isLoggedIn) {
+        return Response.redirect(new URL(DEFAULT_LOGIN_REDIRECT, nextUrl));
+      }
+      return;
+    }
 
-    return Response.redirect(
-      new URL(`/auth/login?callbackUrl=${encodedCallbackUrl}`, nextUrl)
-    );
+    if (!isLoggedIn && !isPublicRoute) {
+      let callbackUrl = nextUrl.pathname;
+      if (nextUrl.search) {
+        callbackUrl += nextUrl.search;
+      }
+
+      const encodedCallbackUrl = encodeURIComponent(callbackUrl);
+
+      return Response.redirect(
+        new URL(`/auth/login?callbackUrl=${encodedCallbackUrl}`, nextUrl)
+      );
+    }
+
+    //console.log("ROUTE: ", req.nextUrl.pathname);
+    //console.log("IS LOGGED IN: ", isLoggedIn);
+    return;
   }
-
-  //console.log("ROUTE: ", req.nextUrl.pathname);
-  //console.log("IS LOGGED IN: ", isLoggedIn);
-  return null;
-});
+);
 
 export const config = {
   matcher: ["/((?!.*\\..*|_next).*)", "/", "/(api|trpc)(.*)"],
